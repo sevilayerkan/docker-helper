@@ -4,6 +4,7 @@ Planning/
 devcontainer.json
 *.pdf
 *.png 
+try.py
 
 # Local History for Visual Studio Code
 .history/
