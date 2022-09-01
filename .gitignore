@@ -1,10 +1,10 @@
 #Custom rules
-Planning/
+#Planning/
 .devcontainer/
-devcontainer.json
-*.pdf
-*.png 
-try.py
+#devcontainer.json
+#*.pdf
+#*.png 
+#try.py
 
 # Local History for Visual Studio Code
 .history/
