@@ -1,11 +1,11 @@
-//Fonksiyonlar//
+#Fonksiyonlar#
 
-// * işareti ile gösterilenlerin faz2'de 
-// ** işareti ile gösterilenlerin faz3'te
-// yapılması planlanmaktadır.
+# * işareti ile gösterilenlerin faz2'de 
+# ** işareti ile gösterilenlerin faz3'te
+# yapılması planlanmaktadır.
 
-//checks docker is installed
-//Docker'ın kurulu olup olmadığını kontrol eder
+#checks docker is installed
+#Docker'ın kurulu olup olmadığını kontrol eder
 check_install() bool *
 {
 	if(docker is installed){
@@ -16,21 +16,21 @@ check_install() bool *
 }
 
 
-//Shows runable functions
-//Yapılabilecek fonksiyonları gösterir
+#Shows runable functions
+#Yapılabilecek fonksiyonları gösterir
 showFunctions()
 {
-	//NOT
-	//BU FONKSİYON MAINDE OLMALI
-	//THIS FUNCTION NEEDS TO BE IN MAIN
+	#NOT
+	#BU FONKSİYON MAINDE OLMALI
+	#THIS FUNCTION NEEDS TO BE IN MAIN
 	
 	
 	show all functions
-	//take user's choice as number
+	#take user's choice as number
 	chouse = input(num)
 	
 	
-	//run chosen function
+	#run chosen function
 	switch (num)
 		case 0:
 			f1()
@@ -43,8 +43,8 @@ showFunctions()
 }
 
 
-//Installs docker
-//Sisteme docker kurar
+#Installs docker
+#Sisteme docker kurar
 install()* {
 	if(isInstalled){
 		print(Docker already installed)
@@ -55,14 +55,14 @@ install()* {
 
 }
 	
-//Shows running containers
-//Çalışan containerları gösterir
+#Shows running containers
+#Çalışan containerları gösterir
 show() {
 	print(docker ps -al)
 }
 
-//Shows logs given container
-//Log kayıtlarını gösterir
+#Shows logs given container
+#Log kayıtlarını gösterir
 show_log(containerName) {
 	if containerName==NULL
 		print(error message)
@@ -75,8 +75,8 @@ docker compose(){
 
 }
 
-//Builds simple container from available images
-//Uygun imajlardan basit bir konteynır oluşturur
+#Builds simple container from available images
+#Uygun imajlardan basit bir konteynır oluşturur
 build()
 {
 	show available images to user
@@ -88,8 +88,8 @@ build()
 	docker build imageName
 }
 
-//Starts a container
-//Konteynır başlatır
+#Starts a container
+#Konteynır başlatır
 run(containerName)
 {
 	if containerName==NULL
@@ -98,8 +98,8 @@ run(containerName)
 	docker run containerName
 }
 
-//Pull an image or a repository from a registry (from given list)
-//Registry'den imaj veya bir repository çeker (verilen listeden)
+#Pull an image or a repository from a registry (from given list)
+#Registry'den imaj veya bir repository çeker (verilen listeden)
 pull() *
 {
 	show options
@@ -110,14 +110,14 @@ pull() *
 start()
 {
 
-	//GEREK VAR MI?
+	#GEREK VAR MI?
 	
 }
 
 
 
-//Stops given container
-//İstenen konteynırı durdurur
+#Stops given container
+#İstenen konteynırı durdurur
 stop(containerName)
 {
 	if containerName==NULL
@@ -126,7 +126,7 @@ stop(containerName)
 	docker stop containerName
 }
 
-//Restarts given container
+#Restarts given container
 restart(containerName)
 {
 	if containerName==NULL
@@ -135,7 +135,7 @@ restart(containerName)
 	docker restart containerName
 }
 
-//Delete given container
+#Delete given container
 delete(containerName) *
 {
 	if containerName==NULL
@@ -144,8 +144,8 @@ delete(containerName) *
 	docker delete containerName
 }
 
-//Mounts given file to docker
-//Verilen dosyaları Dockera bağlar
+#Mounts given file to docker
+#Verilen dosyaları Dockera bağlar
 mount() *
 {
 	source = input(file name)
@@ -156,8 +156,8 @@ mount() *
 
 
 
-//For risky and advanced level functions
-//Riskli ve ileri düzey fonksiyonlar için
+#For risky and advanced level functions
+#Riskli ve ileri düzey fonksiyonlar için
 advancedMod() **
 {
 
@@ -165,7 +165,7 @@ advancedMod() **
 	encode key
 	store key somewhere
 	
-	//GÜNCELLENMELİ
+	#GÜNCELLENMELİ
 
 }
 
