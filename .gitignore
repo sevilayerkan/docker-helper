@@ -5,6 +5,7 @@ devcontainer.json
 *.pdf
 *.png 
 try.py
+fonksiyon planları.txt
 
 # Local History for Visual Studio Code
 .history/
