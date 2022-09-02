@@ -1,0 +1,175 @@
+#Fonksiyonlar#
+
+# * işareti ile gösterilenlerin faz2'de 
+# ** işareti ile gösterilenlerin faz3'te
+# yapılması planlanmaktadır.
+
+#checks docker is installed
+#Docker'ın kurulu olup olmadığını kontrol eder
+check_install() bool *
+{
+	if(docker is installed){
+		return 1
+	} else{
+		return 0
+	}
+}
+
+
+#Shows runable functions
+#Yapılabilecek fonksiyonları gösterir
+showFunctions()
+{
+	#NOT
+	#BU FONKSİYON MAINDE OLMALI
+	#THIS FUNCTION NEEDS TO BE IN MAIN
+	
+	
+	show all functions
+	#take user's choice as number
+	chouse = input(num)
+	
+	
+	#run chosen function
+	switch (num)
+		case 0:
+			f1()
+		case 1:
+			f2()
+		.
+		.
+		.
+
+}
+
+
+#Installs docker
+#Sisteme docker kurar
+install()* {
+	if(isInstalled){
+		print(Docker already installed)
+		break
+	} else {
+		install docker
+	}
+
+}
+
+#DONE
+#Shows running containers
+#Çalışan containerları gösterir
+show() {
+	print(docker ps -al)
+}
+
+#Shows logs given container
+#Log kayıtlarını gösterir
+show_log(containerName) {
+	if containerName==NULL
+		print(error message)
+		break
+	docker log -f --details containerName
+}
+
+???
+docker compose(){
+
+}
+
+#Builds simple container from available images
+#Uygun imajlardan basit bir konteynır oluşturur
+build()
+{
+	show available images to user
+	imageName = input()
+	if imageName==NULL
+		print(error message)
+		choose recent
+			imageName = recent image
+	docker build imageName
+}
+
+#Starts a container
+#Konteynır başlatır
+run(containerName)
+{
+	if containerName==NULL
+		print(error message)
+		break
+	docker run containerName
+}
+
+#Pull an image or a repository from a registry (from given list)
+#Registry'den imaj veya bir repository çeker (verilen listeden)
+pull() *
+{
+	show options
+	x = input(option)
+	docker pull x
+}
+
+start()
+{
+
+	#GEREK VAR MI?
+	
+}
+
+
+
+#Stops given container
+#İstenen konteynırı durdurur
+stop(containerName)
+{
+	if containerName==NULL
+		print(error message)
+		break
+	docker stop containerName
+}
+
+#Restarts given container
+restart(containerName)
+{
+	if containerName==NULL
+		print(error message)
+		break
+	docker restart containerName
+}
+
+#Delete given container
+delete(containerName) *
+{
+	if containerName==NULL
+		print(error message)
+		break
+	docker delete containerName
+}
+
+#Mounts given file to docker
+#Verilen dosyaları Dockera bağlar
+mount() *
+{
+	source = input(file name)
+	destination = input(file name)
+	imageName = input(image name)
+	docker mount imageName source destination
+}
+
+
+
+#For risky and advanced level functions
+#Riskli ve ileri düzey fonksiyonlar için
+advancedMod() **
+{
+
+	key = input(****)
+	encode key
+	store key somewhere
+	
+	#GÜNCELLENMELİ
+
+}
+
+
+
+
