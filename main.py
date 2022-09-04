@@ -1,5 +1,6 @@
 #TODO
 #1-Linuxta test edilecek
+#2-https://www.freecodecamp.org/news/use-the-rich-library-in-python/ veya curses
 
 #Import required libraries
 import os
@@ -17,7 +18,7 @@ def show():
 def show_log():
     print("Var olan tüm konteynerlar şu şekildedir: \n")
     print(show() , "\n")
-    containerName = input("\nLog kaydını görmek istediğiniz konteynerın ID'sini girin: \n")
+    containerName = input("\nLog kaydını görmek istediğiniz konteynerın ID'sini girin: \n").lower()
     if (containerName==0) :
         print("error message")
     subprocess.run("docker logs -f --details " + containerName, shell=True)
@@ -28,7 +29,7 @@ def show_log():
 def start():
     print("Var olan tüm konteynırlar şu şekildedir: \n")
     print(show(), "\n")
-    containerName = input("\nBaşlatmak istediğiniz konteynerın ID'sini girin: \n")
+    containerName = input("\nBaşlatmak istediğiniz konteynerın ID'sini girin: \n").lower()
     if (containerName==0) :
         print("error message\n")
     subprocess.run("docker start " + containerName, shell=True)
@@ -39,7 +40,7 @@ def start():
 def stop():
     print("Var olan tüm konteynırlar şu şekildedir: \n")
     print(show(), "\n")
-    containerName = input("\nDurdurmak istediğiniz konteynerın ID'sini girin: \n")
+    containerName = input("\nDurdurmak istediğiniz konteynerın ID'sini girin: \n").lower()
     if (containerName==0) :
         print("error message\n")
     subprocess.run("docker stop " + containerName, shell=True)
@@ -49,7 +50,7 @@ def stop():
 def restart():
     print("Var olan tüm konteynırlar şu şekildedir: \n")
     print(show(), "\n")
-    containerName = input("\nYeniden başlatmak istediğiniz konteynerın ID'sini girin: \n")
+    containerName = input("\nYeniden başlatmak istediğiniz konteynerın ID'sini girin: \n").lower()
     if (containerName==0) :
         print("error message\n")
     subprocess.run("docker restart " + containerName, shell=True)
@@ -86,7 +87,7 @@ def showFunctions():
         elif (choice == '4'):
             return start()
         else:
-            print("x")
+            break
 
         """
         elif (choice == '2'):
@@ -103,9 +104,9 @@ def showFunctions():
         """
         
 #Primative test functions
-print(showFunctions())
+#print(showFunctions())
 
-#print(stop())
+start()
 
 
 
