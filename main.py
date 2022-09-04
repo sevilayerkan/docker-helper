@@ -6,7 +6,8 @@ import subprocess
 #Shows all containers with their states
 #Tüm konteynerları gösterir
 def show():
-	subprocess.call("docker ps -a", shell=True)
+	subprocess.run("docker ps -a", shell=True)
+    #Bug: If docker daemon is not running we got 'error during connect' error
 
 #Shows logs given container
 #Log kayıtlarını gösterir
@@ -17,7 +18,7 @@ def show_log():
     if (containerName==0) :
         print("error message")
     subprocess.run("docker logs -f --details " + containerName, shell=True)
-    #Possible bug: timeout
+    #Possible bug: We might got timeout error if log is empty or not exist.
 
 #Stops given container
 #İstenen konteynırı durdurur
