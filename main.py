@@ -102,11 +102,23 @@ def showFunctions():
         elif (choice == '2'):
             return X
         """
-        
-#Primative test functions
-#print(showFunctions())
 
-start()
+
+
+#Primative test functions
+print(showFunctions())
+
+#start()
+    
+repeat = input("Başka bir işlem yapmak ister misiniz? Evet - E, Hayır - H\n").lower()
+if(repeat=='e'):
+    print(showFunctions())
+elif(repeat=='h'):
+    print("Güle güle :)")
+    exit()
+else:
+    print("Error message")
+    exit()
 
 
 
