@@ -1,6 +1,8 @@
 #TODO
 #1-Linuxta test edilecek
-#2-https://www.freecodecamp.org/news/use-the-rich-library-in-python/ veya curses
+#2-https://www.youtube.com/watch?v=SZdQX4gbql0
+#3-https://www.freecodecamp.org/news/use-the-rich-library-in-python/ veya curses
+
 
 #Import required libraries
 import os
@@ -103,22 +105,27 @@ def showFunctions():
             return X
         """
 
+def repeat():
+    repeat = input("Başka bir işlem yapmak ister misiniz? Evet - E, Hayır - H\n").lower()
+    if(repeat=='e'):
+        print(showFunctions())
+    elif(repeat=='h'):
+        print("Güle güle :)")
+        exit()
+    else:
+        print("Error message: geçersiz bir komut verdiniz")
+        repeat()
 
 
 #Primative test functions
 print(showFunctions())
 
 #start()
+
+print(repeat())
     
-repeat = input("Başka bir işlem yapmak ister misiniz? Evet - E, Hayır - H\n").lower()
-if(repeat=='e'):
-    print(showFunctions())
-elif(repeat=='h'):
-    print("Güle güle :)")
-    exit()
-else:
-    print("Error message")
-    exit()
+
+
 
 
 
