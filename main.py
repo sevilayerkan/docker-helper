@@ -4,16 +4,16 @@ from pickle import TRUE
 import subprocess
 
 #Shows all containers with their states
-#Tüm containerları gösterir
+#Tüm konteynerları gösterir
 def show():
 	subprocess.call("docker ps -a", shell=True)
 
 #Shows logs given container
 #Log kayıtlarını gösterir
 def show_log():
-    print("Var olan tüm konteynırlar şu şekildedir: \n")
+    print("Var olan tüm konteynerlar şu şekildedir: \n")
     print(show() , "\n")
-    containerName = input("\nLog kaydını görmek istediğiniz konteynırın ID'sini girin: \n")
+    containerName = input("\nLog kaydını görmek istediğiniz konteynerın ID'sini girin: \n")
     if (containerName==0) :
         print("error message")
     subprocess.run("docker logs -f --details " + containerName, shell=True)
@@ -24,7 +24,7 @@ def show_log():
 def stop():
     print("Var olan tüm konteynırlar şu şekildedir: \n")
     print(show(), "\n")
-    containerName = input("\nDurdurmak istediğiniz konteynırın ID'sini girin: \n")
+    containerName = input("\nDurdurmak istediğiniz konteynerın ID'sini girin: \n")
     if (containerName==0) :
         print("error message\n")
     subprocess.run("docker stop " + containerName, shell=True)
@@ -39,9 +39,9 @@ def showFunctions():
 	#THIS FUNCTION NEEDS TO BE IN MAIN
 
 	#Show all functions
-    print("1- Tüm konteynırları listele\n")
-    print("2- Bir konteynırın logunu göster\n")
-    print("3- Bir konteynırı durdurun\n")
+    print("1- Tüm konteynerları listele\n")
+    print("2- Bir konteynerın logunu göster\n")
+    print("3- Bir konteynerı durdurun\n")
 
 
     #Take user's choice as number
