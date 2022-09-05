@@ -38,6 +38,7 @@ def start():
     if (containerName==0) :
         print("error message\n")
     subprocess.run("docker start " + containerName, shell=True)
+    repeat()
 
 
 #Stops given container
@@ -49,6 +50,7 @@ def stop():
     if (containerName==0) :
         print("error message\n")
     subprocess.run("docker stop " + containerName, shell=True)
+    repeat()
 
 #Restarts given container
 #İstenen konteynerı durdurur
@@ -59,6 +61,7 @@ def restart():
     if (containerName==0) :
         print("error message\n")
     subprocess.run("docker restart " + containerName, shell=True)
+    repeat()
 
 #Builds simple container from available images
 #Uygun imajlardan basit bir konteyner oluşturur
@@ -78,6 +81,7 @@ def build():
     print("Tüm imajlar şu şekildedir:\n")
     t.sleep(3)
     print(show_images())
+    repeat()
 
 #Starts a container
 #Konteyner başlatır
@@ -87,6 +91,28 @@ def run():
     print("\nKonteyner oluşturuldu.\n")
     t.sleep(1)
     print(show())
+    repeat()
+
+def deleteContainer():
+    print("Var olan komutlar şu şekildedir:\n")
+    print(show())
+    t.sleep(2)
+    container_name=input("Silinmesi için bir konteyner seçin: \n").lower()
+    t.sleep(1)
+    sure=input("Emin misiniz? \nE:Seçtiğiniz konteyner durdurulur ve silinir! Bu işlem geri alınamaz! \nH:Vazgeçtim\n").lower()
+    if(sure=='e'):
+        subprocess.run("docker stop " + container_name, shell=True)
+        print("Konteyner durduruldu şimdi silinecek.\n")
+        t.sleep(2)
+        subprocess.run("docker rm " + container_name, shell=True)
+        t.sleep(2)
+        print("Seçtiğiniz konteyner başarıyla silindi.\n")
+        show()
+    else:
+        repeat()
+    repeat()
+
+
 
 
 #Shows runable functions
@@ -105,6 +131,7 @@ def showFunctions():
     print("5- Bir konteynerı başlatın.\n")
     print("6- Bir konteyner inşa edin.\n")
     print("7- Bir konteynerı çalıştırın.\n")
+    print("8- Bir konteynerı silin.\n")
 
 
     #Take user's choice as number
@@ -128,8 +155,11 @@ def showFunctions():
             return show_images()
         elif (choice == '7'):
             return run()
+        elif (choice == '8'):
+            return deleteContainer()
         else:
             repeat()
+        repeat
 
 def repeat():
     repeat = input("Başka bir işlem yapmak ister misiniz? Evet - E, Hayır - H\n").lower()
