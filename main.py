@@ -79,6 +79,16 @@ def build():
     t.sleep(3)
     print(show_images())
 
+#Starts a container
+#Konteyner başlatır
+def run():
+    subprocess.run("docker run -d -p 80:80 7b9")
+    t.sleep(5)
+    print("\nKonteyner oluşturuldu.\n")
+    t.sleep(1)
+    print(show())
+
+
 #Shows runable functions
 #Yapılabilecek fonksiyonları gösterir
 def showFunctions():
@@ -94,6 +104,7 @@ def showFunctions():
     print("4- Bir konteynerı yeniden başlatın.\n")
     print("5- Bir konteynerı başlatın.\n")
     print("6- Bir konteyner inşa edin.\n")
+    print("7- Bir konteynerı çalıştırın.\n")
 
 
     #Take user's choice as number
@@ -115,6 +126,8 @@ def showFunctions():
             return build()
         elif (choice == '0'):
             return show_images()
+        elif (choice == '7'):
+            return run()
         else:
             repeat()
 
@@ -128,6 +141,7 @@ def repeat():
     else:
         print("Error message: geçersiz bir komut verdiniz")
         repeat()
+
 
 
 #Primative test functions
