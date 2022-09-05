@@ -15,6 +15,11 @@ def show():
 	subprocess.run("docker ps -a", shell=True)
     #Bug: If docker daemon is not running we got 'error during connect' error
 
+#Shows only current running containers
+def showCurrent():
+    subprocess.run("docker ps", shell=True)
+    #Bug: If docker daemon is not running we got 'error during connect' error
+
 def showImages():
     subprocess.run("docker images", shell=True)
 
@@ -114,6 +119,8 @@ def deleteContainer():
         repeat()
     repeat()
 
+#Deletes image
+#İmajı siler
 def deleteImage():
     print("Var olan tüm imajlar şu şekildedir:\n")
     print(showImages())
@@ -143,8 +150,6 @@ def deleteImage():
         repeat()
     repeat()
 
-
-
 #Shows runable functions
 #Yapılabilecek fonksiyonları gösterir
 def showFunctions():
@@ -163,6 +168,7 @@ def showFunctions():
     print("7- Bir konteynerı çalıştırın.\n")
     print("8- Bir konteynerı silin.\n")
     print("9- Bir imajı silin.\n")
+    print("10- List 'only' running containers\n")
 
 
 
@@ -191,6 +197,8 @@ def showFunctions():
             return deleteContainer()
         elif (choice == '9'):
             return deleteImage()
+        elif (choice == '10'):
+            return showCurrent()
         else:
             repeat()
         repeat()
@@ -203,8 +211,9 @@ def repeat():
         print("Güle güle :)")
         exit()
     else:
-        print("Error message: geçersiz bir komut verdiniz")
+        print("Error message: invalid command")
         repeat()
+
 
 
 #Primative test functions
