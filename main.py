@@ -6,14 +6,17 @@
 
 #Import required libraries
 import os
-from pickle import TRUE
 import subprocess
+import time as t
 
 #Shows all containers with their states
 #Tüm konteynerları gösterir
 def show():
 	subprocess.run("docker ps -a", shell=True)
     #Bug: If docker daemon is not running we got 'error during connect' error
+
+def show_images():
+    subprocess.run("docker images", shell=True)
 
 #Shows logs given container
 #Log kayıtlarını gösterir
@@ -57,6 +60,24 @@ def restart():
         print("error message\n")
     subprocess.run("docker restart " + containerName, shell=True)
 
+#Builds simple container from available images
+#Uygun imajlardan basit bir konteyner oluşturur
+def build():
+    #show available images to user
+    print("Mevcut imajlar şu şekildedir: \n")
+    print(show_images())
+	#imageName = input("\nKonteyner oluşrurmak istediğiniz imajı seçin:").lower()
+	#if imageName==NULL:
+		#print(error message)
+		#choose recent
+			#imageName = recent image
+    #else:
+    print("Demo web imajı oluşturulacaktır.\n")
+    subprocess.run("docker build -t hello .")
+    t.sleep(3)
+    print("Tüm imajlar şu şekildedir:\n")
+    t.sleep(3)
+    print(show_images())
 
 #Shows runable functions
 #Yapılabilecek fonksiyonları gösterir
@@ -66,18 +87,20 @@ def showFunctions():
 	#THIS FUNCTION NEEDS TO BE IN MAIN
 
 	#Show all functions
+    print("0- Tüm imajları listele.\n")
     print("1- Tüm konteynerları listele.\n")
     print("2- Bir konteynerın logunu göster.\n")
     print("3- Bir konteynerı durdurun.\n")
     print("4- Bir konteynerı yeniden başlatın.\n")
     print("5- Bir konteynerı başlatın.\n")
+    print("6- Bir konteyner inşa edin.\n")
 
 
     #Take user's choice as number
     choice = input("Lütfen istediğiniz işlemin numarasını girin:\n")
 
     #Run chosen function
-    while (choice != '0'):
+    while (choice):
         if (choice == '1'):
             return show() 
         elif (choice == '2'):
@@ -86,24 +109,14 @@ def showFunctions():
             return stop()
         elif (choice == '4'):
             return restart()
-        elif (choice == '4'):
+        elif (choice == '5'):
             return start()
+        elif (choice == '6'):
+            return build()
+        elif (choice == '0'):
+            return show_images()
         else:
-            break
-
-        """
-        elif (choice == '2'):
-            return X
-        
-        elif (choice == '2'):
-            return X
-        elif (choice == '2'):
-            return X
-        elif (choice == '2'):
-            return X
-        elif (choice == '2'):
-            return X
-        """
+            repeat()
 
 def repeat():
     repeat = input("Başka bir işlem yapmak ister misiniz? Evet - E, Hayır - H\n").lower()
