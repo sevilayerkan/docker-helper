@@ -15,7 +15,7 @@ def show():
 	subprocess.run("docker ps -a", shell=True)
     #Bug: If docker daemon is not running we got 'error during connect' error
 
-def show_images():
+def showImages():
     subprocess.run("docker images", shell=True)
 
 #Shows logs given container
@@ -68,7 +68,7 @@ def restart():
 def build():
     #show available images to user
     print("Mevcut imajlar şu şekildedir: \n")
-    print(show_images())
+    print(showImages())
 	#imageName = input("\nKonteyner oluşrurmak istediğiniz imajı seçin:").lower()
 	#if imageName==NULL:
 		#print(error message)
@@ -80,7 +80,7 @@ def build():
     t.sleep(3)
     print("Tüm imajlar şu şekildedir:\n")
     t.sleep(3)
-    print(show_images())
+    print(showImages())
     repeat()
 
 #Starts a container
@@ -93,8 +93,10 @@ def run():
     print(show())
     repeat()
 
+#Stops and deletes given container
+#Seçilen konteynerı durdurur ve siler
 def deleteContainer():
-    print("Var olan komutlar şu şekildedir:\n")
+    print("Var olan tüm konteynerlar şu şekildedir:\n")
     print(show())
     t.sleep(2)
     container_name=input("Silinmesi için bir konteyner seçin: \n").lower()
@@ -112,6 +114,34 @@ def deleteContainer():
         repeat()
     repeat()
 
+def deleteImage():
+    print("Var olan tüm imajlar şu şekildedir:\n")
+    print(showImages())
+    t.sleep(2)
+
+    print("Bir imajın silimesi için referans verildiği konteyner silinmiş olmalıdır.\n")
+    t.sleep(1)
+
+    check_continue= input("Hala işleme devam etmek istiyor musunuz?  E/H\n").lower()
+    if(check_continue=="e"):
+        print("İşleme devam edilecektir.\n")
+    else:
+        print("İşlem sonlandırıldı.\n")
+        repeat()
+
+    image_name=input("Silinmesi için bir imaj seçin: \n").lower()
+    t.sleep(1)
+    sure=input("Emin misiniz? \nE:Seçtiğiniz imaj silinir! Bu işlem geri alınamaz! \nH:Vazgeçtim\n").lower()
+    if(sure=='e'):
+        print("Seçtiğiniz " + image_name + " imajı silinecek.\n")
+        t.sleep(2)
+        subprocess.run("docker rmi " + image_name, shell=True)
+        t.sleep(2)
+        print("Seçtiğiniz " + image_name + " imajı başarıyla silindi.\n")
+        show()
+    else:
+        repeat()
+    repeat()
 
 
 
@@ -132,6 +162,8 @@ def showFunctions():
     print("6- Bir konteyner inşa edin.\n")
     print("7- Bir konteynerı çalıştırın.\n")
     print("8- Bir konteynerı silin.\n")
+    print("9- Bir imajı silin.\n")
+
 
 
     #Take user's choice as number
@@ -152,14 +184,16 @@ def showFunctions():
         elif (choice == '6'):
             return build()
         elif (choice == '0'):
-            return show_images()
+            return showImages()
         elif (choice == '7'):
             return run()
         elif (choice == '8'):
             return deleteContainer()
+        elif (choice == '9'):
+            return deleteImage()
         else:
             repeat()
-        repeat
+        repeat()
 
 def repeat():
     repeat = input("Başka bir işlem yapmak ister misiniz? Evet - E, Hayır - H\n").lower()
@@ -171,7 +205,6 @@ def repeat():
     else:
         print("Error message: geçersiz bir komut verdiniz")
         repeat()
-
 
 
 #Primative test functions
