@@ -13,7 +13,7 @@ import time as t
 #Tüm konteynerları gösterir
 def show():
 	subprocess.run("docker ps -a", shell=True)
-    #Bug: If docker daemon is not running we got 'error during connect' error
+    #Bug: If docker daemon is not running we got 'error during connect' error (needs to be deleted)
 
 #Shows only current running containers
 def showCurrent():
