@@ -1,5 +1,4 @@
 #TODO
-#1-Linuxta test edilecek
 #2-https://www.youtube.com/watch?v=SZdQX4gbql0
 #3-https://www.freecodecamp.org/news/use-the-rich-library-in-python/ veya curses
 

@@ -1,3 +1,5 @@
+#Files docker should ignore
+
 .git
 .gitignore
 README.md
