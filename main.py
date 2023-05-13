@@ -9,7 +9,6 @@ import subprocess
 import time as t
 
 #Shows all containers with their states
-#Tüm konteynerları gösterir
 def show():
 	subprocess.run("docker ps -a", shell=True)
     #Bug: If docker daemon is not running we got 'error during connect' error (needs to be deleted)
@@ -23,7 +22,6 @@ def showImages():
     subprocess.run("docker images", shell=True)
 
 #Shows logs given container
-#Log kayıtlarını gösterir
 def show_log():
     print("Var olan tüm konteynerlar şu şekildedir: \n")
     print(show() , "\n")
@@ -34,7 +32,6 @@ def show_log():
     #Possible bug: We might got timeout error if log is empty or not exist.
 
 #Starts given container
-#İstenen konteynırı başlatır
 def start():
     print("Var olan tüm konteynırlar şu şekildedir: \n")
     print(show(), "\n")
@@ -46,7 +43,6 @@ def start():
 
 
 #Stops given container
-#İstenen konteynerı durdurur
 def stop():
     print("Var olan tüm konteynırlar şu şekildedir: \n")
     print(show(), "\n")
@@ -57,7 +53,6 @@ def stop():
     repeat()
 
 #Restarts given container
-#İstenen konteynerı durdurur
 def restart():
     print("Var olan tüm konteynırlar şu şekildedir: \n")
     print(show(), "\n")
@@ -68,7 +63,6 @@ def restart():
     repeat()
 
 #Builds simple container from available images
-#Uygun imajlardan basit bir konteyner oluşturur
 def build():
     #show available images to user
     print("Mevcut imajlar şu şekildedir: \n")
@@ -88,7 +82,6 @@ def build():
     repeat()
 
 #Starts a container
-#Konteyner başlatır
 def run():
     subprocess.run("docker run -d -p 80:80 7b9")
     t.sleep(5)
@@ -98,7 +91,6 @@ def run():
     repeat()
 
 #Stops and deletes given container
-#Seçilen konteynerı durdurur ve siler
 def deleteContainer():
     print("Var olan tüm konteynerlar şu şekildedir:\n")
     print(show())
@@ -119,7 +111,6 @@ def deleteContainer():
     repeat()
 
 #Deletes image
-#İmajı siler
 def deleteImage():
     print("Var olan tüm imajlar şu şekildedir:\n")
     print(showImages())
@@ -150,7 +141,6 @@ def deleteImage():
     repeat()
 
 #Shows runable functions
-#Yapılabilecek fonksiyonları gösterir
 def showFunctions():
 	#NOT
 	#BU FONKSİYON MAINDE OLMALI
