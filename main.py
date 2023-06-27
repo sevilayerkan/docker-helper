@@ -27,16 +27,22 @@ class DockerHelper:
 
     # Shows logs given container
     # Log kayıtlarını gösterir
+    # subprocess.run("docker logs -f --details " + containerName, shell=True)
 
     def show_log(self):
         print("Var olan tüm konteynerlar şu şekildedir: \n")
         print(self.show(), "\n")
         containerName = input(
             "\nLog kaydını görmek istediğiniz konteynerın ID'sini girin: \n").lower()
-        if (containerName == 0):
-            print("error message")
-        subprocess.run("docker logs -f --details " + containerName, shell=True)
-        # Possible bug: We might got timeout error if log is empty or not exist.
+        if not containerName:
+            print("Error: Konteyner ID'si boş olamaz.\n")
+            return
+        try:
+            subprocess.run("docker logs -f --details " + containerName, shell=True)
+            print("Log kaydı görüntüleniyor.\n")
+        except subprocess.CalledProcessError:
+            print("Error: Konteyner logları gösterilemiyor.\n")
+       
 
     # Starts given container
     # İstenen konteynırı başlatır
