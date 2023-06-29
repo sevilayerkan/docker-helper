@@ -173,6 +173,40 @@ class DockerHelper:
             self.repeat()
         self.repeat()
 
+    # Mounts a volume to a container
+    # Bir volume'u bir konteynere bağlar
+    def mount(self):
+        self.show()
+
+        container_name = input(
+            "Bir volume bağlamak istediğiniz konteynerın ID'sini girin: \n").lower()
+        if not container_name:
+            print("Konteyner ismi boş olamaz!\n")
+            self.mount()
+        print("Bağlanacak volume'u seçin: \n")
+
+    
+        host_path = input("Host path: \n").lower()
+        if not host_path:
+            print("Host path boş olamaz!\n")
+            self.mount()
+
+        container_path = subprocess.run(
+            "docker inspect -f '{{ .Mounts }}' " + container_name, shell=True)
+        if not container_path or container_name:
+            return self.mount()
+
+        try:
+            subprocess.run("docker commit" + container_name + "newimage", shell=True)
+            print("Seçilen konteynerdan yeni bir imaj oluşturuldu.\n")
+            t.sleep(2)
+            subprocess.run(f"docker run -ti -v {host_path}:{container_path} {container_name}", shell=True)
+            t.sleep(2)
+            print("Volume başarıyla bağlandı.\n")
+        except:
+            print("Error message: invalid command")
+            self.repeat()        
+        
     def repeat(self):
         repeat = input(
             "Başka bir işlem yapmak ister misiniz? Evet - E, Hayır - H\n").lower()
@@ -260,13 +294,14 @@ def main():
         print("8- Bir konteynerı silin.\n")
         print("9- Bir imajı silin.\n")
         print("10- Şu an çalışan konteynerları göster.\n")
+        print("14- Bir konteynera disk imajı bağla.\n")
         print("11- Çıkış yap.\n")
 
 
         choice = input("\nLütfen istediğiniz işlemin numarasını girin: [0-11] ")
-        if not choice.isdigit() or int(choice) < 1 or int(choice) > 11:
+        """if not choice.isdigit() or int(choice) < 1 or int(choice) > 11:
             print("Error: Hatalı seçim yaptınız. Lütfen 0-11 arası bir sayı girin.")
-            continue
+            continue"""
 
         choice = int(choice)
         if choice == 0:
@@ -291,6 +326,8 @@ def main():
             docker.deleteImage()
         elif choice == 10:
             docker.showCurrent()
+        elif choice == 14:
+            docker.mount()
         else:
             print("Goodbye!")
             break
