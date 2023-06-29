@@ -173,6 +173,30 @@ class DockerHelper:
             self.repeat()
         self.repeat()
 
+    # Prune multiple unused objects in one go
+    # Kullanılmayan nesneleri tek seferde siler
+    def prune(self):
+        print("Kullanılmayan nesneler silinecektir.\n")
+        t.sleep(1)
+        sure = input(
+            "Emin misiniz? \nE:Kullanılmayan nesneler silinecek! Bu işlem geri alınamaz! \nH:Vazgeçtim\n").lower()
+        if (sure == 'e'):
+            print("Kullanılmayan nesneler siliniyor.\n")
+            t.sleep(2)
+
+            # Todo: if docker daemon is not running, this command will not work properly we need to handle this situation
+            # We can handle this situation by checking if docker daemon is running or not 
+            # If it is not running, we can give a warning message to user and ask if user wants to start docker daemon
+            # or we can parse error message and give a warning message to user
+
+            subprocess.run("docker image prune -a -f", shell=True)
+            t.sleep(2)
+            print("Kullanılmayan nesneler başarıyla silindi.\n")
+            self.repeat()
+        else:
+            self.repeat()
+        self.repeat()
+
     def repeat(self):
         repeat = input(
             "Başka bir işlem yapmak ister misiniz? Evet - E, Hayır - H\n").lower()
@@ -260,13 +284,14 @@ def main():
         print("8- Bir konteynerı silin.\n")
         print("9- Bir imajı silin.\n")
         print("10- Şu an çalışan konteynerları göster.\n")
-        print("11- Çıkış yap.\n")
+        print("15- Kullanılmayan ögeleri temizle.\n")
+        print("12- Çıkış yap.\n")
 
 
-        choice = input("\nLütfen istediğiniz işlemin numarasını girin: [0-11] ")
-        if not choice.isdigit() or int(choice) < 1 or int(choice) > 11:
+        choice = input("\nLütfen istediğiniz işlemin numarasını girin: [0-12] ")
+        """if not choice.isdigit() or int(choice) < 1 or int(choice) > 11:
             print("Error: Hatalı seçim yaptınız. Lütfen 0-11 arası bir sayı girin.")
-            continue
+            continue"""
 
         choice = int(choice)
         if choice == 0:
@@ -291,6 +316,8 @@ def main():
             docker.deleteImage()
         elif choice == 10:
             docker.showCurrent()
+        elif choice == 15:
+            docker.prune()
         else:
             print("Goodbye!")
             break
