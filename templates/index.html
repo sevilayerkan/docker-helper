@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Docker Shell</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+
+<body>
+    <h1>Docker Shell</h1>
+
+    <form method="POST" action="/operation">
+        <label for="operation">Select Operation:</label>
+        <select name="operation" id="operation">
+            <option value="start">Start Container</option>
+            <option value="stop">Stop Container</option>
+            <option value="restart">Restart Container</option>
+            <option value="deleteContainer">Delete Container</option>
+            <option value="deleteImage">Delete Image</option>
+            <option value="mount">Mount Volume</option>
+        </select>
+
+        <div id="container-name">
+            <label for="container_name">Container Name:</label>
+            <input type="text" name="container_name" id="container_name">
+        </div>
+
+        <div id="host-path" style="display: none;">
+            <label for="host_path">Host Path:</label>
+            <input type="text" name="host_path" id="host_path">
+        </div>
+
+        <div id="container-path" style="display: none;">
+            <label for="container_path">Container Path:</label>
+            <input type="text" name="container_path" id="container_path">
+        </div>
+
+        <button type="submit">Execute</button>
+    </form>
+
+    <div id="result">
+        {% if result %}
+        <h3>Result:</h3>
+        <p>{{ result }}</p>
+        {% endif %}
+    </div>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+
+</html>
