@@ -84,6 +84,28 @@ class DockerHelper:
         subprocess.run("docker restart " + containerName, shell=True)
         self.repeat()
 
+    # Composes containers from docker-compose.yml file
+    # docker-compose.yml dosyasından konteyner oluşturur
+    def compose(self):
+        
+        composeFileName = input(
+            "\nİstediğiniz compose dosyanısının yeri ve konumunu uygun bir şekilde girin: \n").lower()
+        
+        if not composeFileName == 0:
+            print("Dosya ismi boş olamaz! Lütfen geçerli bir dosya ismi giriniz.\n")
+            return self.compose() 
+        try:
+            subprocess.run("docker-compose up " + composeFileName + "up -d", shell = True)
+            f'"{composeFileName}" dosyası başarıyla çalıştırıldı.\n'
+        except subprocess.CalledProcessError:
+            print("Error: Dosya çalıştırılamadı.\n") 
+
+        # Calls main function again  
+        # Main fonksiyonu tekrar çağırır
+        self.repeat()
+
+
+
     # Builds simple container from available images
     # Uygun imajlardan basit bir konteyner oluşturur
 
@@ -260,12 +282,13 @@ def main():
         print("8- Bir konteynerı silin.\n")
         print("9- Bir imajı silin.\n")
         print("10- Şu an çalışan konteynerları göster.\n")
-        print("11- Çıkış yap.\n")
+        print("11- Compose \n")
+        print("12- Çıkış yap.\n")
 
 
-        choice = input("\nLütfen istediğiniz işlemin numarasını girin: [0-11] ")
-        if not choice.isdigit() or int(choice) < 1 or int(choice) > 11:
-            print("Error: Hatalı seçim yaptınız. Lütfen 0-11 arası bir sayı girin.")
+        choice = input("\nLütfen istediğiniz işlemin numarasını girin: [0-12] ")
+        if not choice.isdigit() or int(choice) < 1 or int(choice) > 12:
+            print("Error: Hatalı seçim yaptınız. Lütfen 0-12 arası bir sayı girin.")
             continue
 
         choice = int(choice)
@@ -291,10 +314,11 @@ def main():
             docker.deleteImage()
         elif choice == 10:
             docker.showCurrent()
+        elif choice == 11:
+            docker.compose()
         else:
             print("Goodbye!")
             break
-
 
 
 if __name__ == "__main__":
